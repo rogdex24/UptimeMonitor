@@ -164,7 +164,6 @@ async def store_report(store_id: int) -> dict:
 async def generate_store_report() -> List[dict]:
     
     store_ids = await store_status.distinct('store_id')
-    store_ids = store_ids[432:654]
 
     tasks = [asyncio.create_task(store_report(id)) for id in store_ids]
     for f in tqdm.as_completed(tasks, desc="Generating the Report"):
